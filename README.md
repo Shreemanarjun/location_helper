@@ -1,4 +1,8 @@
 # Location Helper 🌍
+![Coverage](https://img.shields.io/badge/coverage-100%25-brightgreen.svg)
+![License](https://img.shields.io/badge/license-MIT-green.svg)
+![Flutter](https://img.shields.io/badge/flutter-%5E3.0.0-blue.svg)
+![GitHub Stars](https://img.shields.io/github/stars/Shreemanarjun/location_helper.svg?style=social)
 
 Location Helper is a Flutter package that simplifies location service management and error handling using the Geolocator package and Riverpod for state management.
 

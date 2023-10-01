@@ -15,18 +15,6 @@ class IntialLocationState extends LocationState {
   });
 
   @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-
-    return other is IntialLocationState &&
-        other.isServiceEnabled == isServiceEnabled &&
-        other.permissionState == permissionState;
-  }
-
-  @override
-  int get hashCode => isServiceEnabled.hashCode ^ permissionState.hashCode;
-
-  @override
   String toString() =>
       'IntialLocationState(isServiceEnabled: $isServiceEnabled, permissionState: $permissionState)';
 }
@@ -39,18 +27,6 @@ class LoadingLocationState extends LocationState {
     required super.isServiceEnabled,
     required super.permissionState,
   });
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-
-    return other is LoadingLocationState &&
-        other.isServiceEnabled == isServiceEnabled &&
-        other.permissionState == permissionState;
-  }
-
-  @override
-  int get hashCode => isServiceEnabled.hashCode ^ permissionState.hashCode;
 }
 
 class LoadedLocationState extends LocationState {
@@ -60,16 +36,6 @@ class LoadedLocationState extends LocationState {
     required super.permissionState,
     required this.position,
   });
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-
-    return other is LoadedLocationState && other.position == position;
-  }
-
-  @override
-  int get hashCode => position.hashCode;
 
   @override
   String toString() => 'LoadedLocationState(position: $position)';
@@ -83,16 +49,6 @@ class LocationErrorState extends LocationState {
     required super.permissionState,
     required this.errorMessage,
   });
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-
-    return other is LocationErrorState && other.errorMessage == errorMessage;
-  }
-
-  @override
-  int get hashCode => errorMessage.hashCode;
 
   @override
   String toString() => 'LocationErrorState(errorMessage: $errorMessage)';

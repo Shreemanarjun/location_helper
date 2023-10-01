@@ -29,20 +29,20 @@ class LocationNotifier extends AutoDisposeAsyncNotifier<LocationState> {
       final isServiceEnabled = await Geolocator.isLocationServiceEnabled();
       final permissionState = await Geolocator.checkPermission();
 
-      if (permissionState != LocationPermission.always ||
-          permissionState != LocationPermission.whileInUse) {
+      if (permissionState == LocationPermission.always ||
+          permissionState == LocationPermission.whileInUse) {
+        state = AsyncData(
+          LoadingLocationState(
+            isServiceEnabled: isServiceEnabled,
+            permissionState: permissionState,
+          ),
+        );
+      } else {
         final newPermissionState = await Geolocator.requestPermission();
         state = AsyncData(
           LoadingLocationState(
             isServiceEnabled: isServiceEnabled,
             permissionState: newPermissionState,
-          ),
-        );
-      } else {
-        state = AsyncData(
-          LoadingLocationState(
-            isServiceEnabled: isServiceEnabled,
-            permissionState: permissionState,
           ),
         );
       }
@@ -61,23 +61,22 @@ class LocationNotifier extends AutoDisposeAsyncNotifier<LocationState> {
         }
 
         /// When permission is not not enabled
-        else {
-          return LocationErrorState(
-            isServiceEnabled: isServiceEnabled,
-            permissionState: permissionState,
-            errorMessage: "Permission not enabled",
-          );
-        }
+        ///
+        return LocationErrorState(
+          isServiceEnabled: isServiceEnabled,
+          permissionState: permissionState,
+          errorMessage: "Permission not enabled",
+        );
       }
 
       /// If service is disabled change state to LocationErrorState
-      else {
-        return LocationErrorState(
+      
+      return LocationErrorState(
           isServiceEnabled: isServiceEnabled,
           permissionState: permissionState,
           errorMessage: "Service disabled",
         );
       }
-    });
+    );
   }
 }

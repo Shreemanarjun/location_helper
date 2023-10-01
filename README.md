@@ -20,16 +20,11 @@ dependencies:
 
 Then, run `flutter pub get` to install the packages.
 
+## Setup Permissions
 
-## Follow `geolocator` Usage guide to setup permission 
-
-[Link to Guide](https://pub.dev/packages/geolocator#usage)
-
-
-
+Follow the Geolocator package's [usage guide](https://pub.dev/packages/geolocator#usage) to set up location permissions in your application.
 
 ## Usage 🎉
-
 
 ### 1. Consume Location State
 
@@ -58,11 +53,11 @@ Location Helper automatically reacts to location state changes. When the locatio
    ref.listen(locationPod,
         (AsyncValue<LocationState>? previous previous,AsyncValue<LocationState> previous next){
 
-  /// If any unknown error , (like android permsssion permission not andded in manifest or in info.plist in ios)         
+  /// If any unknown error, like Android permission not added in manifest or in info.plist in iOS        
      if (next is AsyncError) {
       final error = next.error;
 
-      /// You can use dialogs or snackbars here to show use ful info to user
+      /// You can use dialogs or snackbars here to show useful info to the user
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
@@ -76,7 +71,7 @@ Location Helper automatically reacts to location state changes. When the locatio
     else if (next is AsyncData && next.value != null) {
            /// If service not enabled
         if (!errorState.isServiceEnabled) {
-             /// You can use dialogs or snackbars here to show use ful info to user
+             /// You can use dialogs or snackbars here to show useful info to the user
         }
            /// If permission is denied
         else if (errorState.permissionState == LocationPermission.denied ||
@@ -84,16 +79,25 @@ Location Helper automatically reacts to location state changes. When the locatio
             errorState.permissionState ==
                 LocationPermission.unableToDetermine) {
 
-      /// You can use dialogs or snackbars here to show use ful info to user
+      /// You can use dialogs or snackbars here to show useful info to the user
 
          }
     }
+});
 
-       
-        });
 ```
 
+## Testing ✅
 
+Location Helper has been thoroughly tested to ensure reliability and stability. Unit tests and widget tests have been implemented to validate different aspects of the package, including location state changes, error handling, and integration with Riverpod.
+
+To run the tests, use the following command in your terminal or command prompt:
+
+```
+flutter test
+```
+
+Feel free to explore the `test` directory to view the test cases and expand the test coverage if needed.
 
 ## Contributing 🤝
 

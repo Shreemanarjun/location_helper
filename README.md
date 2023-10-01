@@ -20,6 +20,14 @@ dependencies:
 
 Then, run `flutter pub get` to install the packages.
 
+
+## Follow `geolocator` Usage guide to setup permission 
+
+[Link to Guide](https://pub.dev/packages/geolocator#usage)
+
+
+
+
 ## Usage 🎉
 
 
